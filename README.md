@@ -6,13 +6,13 @@ Este projeto se trata de uma API REST para gerenciar produtos. A API permite rea
 
 ### 1. Listar todos os produtos
 
-- **URL:** `/produtos`
+- **URL:** `/products`
 - **Método:** GET
 - **Descrição:** Retorna uma lista de todos os produtos cadastrados.
 
 ### 2. Obter um product específico
 
-- **URL:** `/produtos/{id}`
+- **URL:** `/products/{id}`
 - **Método:** GET
 - **Descrição:** Retorna os detalhes de um product com o ID específico.
 
@@ -27,7 +27,7 @@ Ao tentar localizar um product pelo ID, a API pode lançar exceções em situaç
 
 ### 3. Adicionar um novo product
 
-- **URL:** `produtos`
+- **URL:** `products`
 - **Método:** POST
 - **Descrição:** Adiciona um novo product ao banco de dados.
 - **Corpo da requisição:**
@@ -48,7 +48,7 @@ Ao tentar cadastrar um product, a API pode lançar exceções em situações esp
 
 ### 4. Alterar um product cadastrado.
 
-- **URL:** `/produtos/{id}`
+- **URL:** `/products/{id}`
 - **Método:** PUT
 - **Descrição:** Altera as informações de um product cadastrado no banco de dados.
   
@@ -62,7 +62,7 @@ Ao tentar alterar um product, a API pode lançar exceções em situações espec
 - **Descrição:** Se a solicitação para alterar um product contiver um ID que não existe no banco de dados, a API retornará um status 404 indicando que o product não foi encontrado.
 
 ### 5. Excluir um product cadastrado.
-- **URL:** `/produtos/{id}`
+- **URL:** `/products/{id}`
 - **Método:** DELETE
 - **Descrição:** Deleta um product pelo ID cadastrado no banco de dados.
 
