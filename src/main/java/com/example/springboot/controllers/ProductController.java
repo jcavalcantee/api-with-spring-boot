@@ -43,7 +43,7 @@ public class ProductController {
 	}
 	
 	@PutMapping("{id}")
-	public ResponseEntity<?> updateProduto(@PathVariable (value="id") Long id, @RequestBody Product product) {
+	public ResponseEntity<?> updateProduto(@PathVariable (value="id") Long id, @RequestBody Product product) throws Exception{
 		var productUpdate = this.productService.updateProduct(id, product);
 		return new ResponseEntity<>(productUpdate, HttpStatus.OK);
 	}

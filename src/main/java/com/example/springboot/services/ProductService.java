@@ -28,14 +28,14 @@ public class ProductService {
         return newProduct;
     }
 
-    public ResponseEntity<?> updateProduct(Long id, Product product) {
-        Optional<Product> product0 = this.productRepository.findById(id);
+    public Product updateProduct(Long id, Product product) throws Exception {
+        Product existProduct = productRepository.findById(id).orElseThrow(
+                () -> new Exception("Product not found with ID: " + id));
 
-        if(product0.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product ID provided does not exist");
-        }
-        productRepository.delete(product0.get());
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Product deleted successfully!");
+        existProduct.setName(product.getName());
+        existProduct.setPrice(product.getPrice());
+
+        return productRepository.save(existProduct);
     }
 
     public Product getProductById(Long id) throws Exception{
