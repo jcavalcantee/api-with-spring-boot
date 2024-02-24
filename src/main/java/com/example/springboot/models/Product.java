@@ -1,5 +1,6 @@
 package com.example.springboot.models;
 
+import com.example.springboot.controllers.ProductController;
 import com.example.springboot.dtos.ProductDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,13 +8,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
 @Table(name="products")
-public class Product {
+public class Product extends RepresentationModel<Product> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,6 +64,20 @@ public class Product {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+		Product product = (Product) o;
+		return Objects.equals(id, product.id) && Objects.equals(name, product.name) && Objects.equals(price, product.price);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), id, name, price);
 	}
 
 	public String toString() {
