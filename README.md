@@ -2,6 +2,14 @@
 
 Este projeto se trata de uma API REST para gerenciar produtos. A API permite realizar operações básicas como criação, leitura, atualização e exclusão de produtos.
 
+### Tecnologias Utilizadas:
+
+- **Java**
+- **SpringBoot**
+- **JPA / Hibernate:**
+- **MySQL**
+- **Maven** 
+
 ## Endpoints
 
 ### 1. Listar todos os produtos
