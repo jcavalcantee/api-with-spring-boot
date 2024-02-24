@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/v1/products")
 public class ProductController {
 
 	@Autowired
 	private ProductService productService;
 	
 	@PostMapping
-	public ResponseEntity<Product> saveProduct(@RequestBody ProductDto productDto) {
+	public ResponseEntity<Product> saveProduct(@RequestBody ProductDto productDto) throws Exception {
 		Product newProduct = productService.createProduct(productDto);
 		return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
 	}
@@ -41,16 +41,21 @@ public class ProductController {
 		var productForId = this.productService.getProductById(id);
 		return new ResponseEntity<>(productForId, HttpStatus.OK);
 	}
+
+	@GetMapping("/name/{name}")
+	public ResponseEntity<Product> productByName(@PathVariable (value = "name") String name) throws Exception {
+		var productByName = this.productService.getProductByName(name);
+		return new ResponseEntity<>(productByName, HttpStatus.OK);
+	}
 	
-	@PutMapping("{id}")
-	public ResponseEntity<?> updateProduto(@PathVariable (value="id") Long id, @RequestBody Product product) throws Exception{
+	@PutMapping("/update/{id}")
+	public ResponseEntity<?> updateProduct(@PathVariable (value="id") Long id, @RequestBody Product product) throws Exception{
 		var productUpdate = this.productService.updateProduct(id, product);
 		return new ResponseEntity<>(productUpdate, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("{id}")
-	public ResponseEntity<?> deleteProduct(@PathVariable (value="id") Long id) {
-		this.productService.deleteProductById(id);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Product> deleteProduct(@PathVariable (value="id") Long id) {
+		return this.productService.deleteProductById(id);
 	}
 }
